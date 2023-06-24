@@ -18,12 +18,11 @@ Route::get('/', function () {
     return view('layout.master');
 });
 
-// Route::get('/siswa', function () {
-//     // return view('siswa.index');
-// });
+
 
 Route::get('/siswa', [siswaController::class, 'index']);
 Route::get('/siswa/form/', [siswaController::class, 'create'])->name('addsiswa');
+Route::post('/siswa', [siswaController::class, 'store']);
 
 
 Route::get('/contoh', function () {
