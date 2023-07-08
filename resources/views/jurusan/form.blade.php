@@ -22,34 +22,23 @@
             @csrf
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">NIS</label>
-              <input type="text" name="nis" value="{{old('nis')}}" class="form-control @error('nis') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp">
-                @error('nis')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
+              <input type="text" name="nis" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Nama Lengkap</label>
-              <input type="text" name="nama" value="{{old('nama')}}" class="form-control @error('nama') is-invalid @enderror" id="exampleInputPassword1">
-              @error('nama')
-              <span class="text-danger">{{ $message }}</span>
-          @enderror
+              <input type="text" name="nama" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Tempat Lahir</label>
-                <input type="text" name="tempat" value="{{old('tempat')}}" class="form-control" id="exampleInputPassword1">
+                <input type="text" name="tempat" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Tanggal Lahir</label>
-                <input type="date" name="tanggal" value="{{old('tanggal')}}" class="form-control" id="exampleInputPassword1">
+                <input type="date" name="tanggal" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Jurusan</label>
-                <select name="jurusan" class="form-control" id="">
-                    <option value="">-Pilih Jurusan-</option>
-                    @foreach ($jurusan as $item)
-                        <option value="{{$item->id}}">{{$item->kode}} - {{$item->jurusan}}</option>
-                    @endforeach
-                </select>
+                <input type="number" name="jurusan" class="form-control" id="exampleInputPassword1">
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
           </form>

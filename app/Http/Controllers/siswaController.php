@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Models\Jurusan;
 
 class siswaController extends Controller
 {
@@ -21,7 +22,8 @@ class siswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.form');
+        $jurusan = Jurusan::all();
+        return view('siswa.form',compact('jurusan'));
     }
 
     /**
@@ -29,7 +31,20 @@ class siswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nis' => 'required|unique:App\Models\Siswa|min:5',
+            'nama' => 'required',
+        ]);
+
+        $siswa = new Siswa;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->tempat_lahir = $request->tempat;
+        $siswa->tanggal_lahir = $request->tanggal;
+        $siswa->jurusans_id = $request->jurusan;
+        $siswa->save();
+
+        return redirect('/siswa');
     }
 
     /**
@@ -45,7 +60,8 @@ class siswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        return view('siswa.edit',compact('siswa'));
     }
 
     /**
@@ -53,7 +69,15 @@ class siswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->tempat_lahir = $request->tempat;
+        $siswa->tanggal_lahir = $request->tanggal;
+        $siswa->jurusans_id = $request->jurusan;
+        $siswa->save();
+
+        return redirect('/siswa');
     }
 
     /**
@@ -61,6 +85,9 @@ class siswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+
+        return redirect('/siswa');
     }
 }

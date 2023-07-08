@@ -22,21 +22,17 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">NIS</th>
-                <th scope="col">Nama Lengkap</th>
-                <th scope="col">Tempat/Tanggal Lahir</th>
+                <th scope="col">Kode</th>
                 <th scope="col">Jurusan</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
             <tbody>
-                @forelse ($siswa as $data)
+                @forelse ($jurusan as $data)
                 <tr>
                     <th scope="row">1</th>
-                    <td>{{$data->nis}}</td>
-                    <td>{{$data->nama}}</td>
-                    <td>{{$data->tempat_lahir}} / {{date_format(date_create($data->tanggal_lahir),"d M Y")}}</td>
-                    <td>{{$data->jurusans->jurusan}}</td>
+                    <td>{{$data->kode}}</td>
+                    <td>{{$data->jurusan}}</td>
                     <td><a href="/siswa/edit/{{$data->id}}" class="btn btn-info btn-sm">Edit</a>
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-default{{$data->id}}">
                             Hapus
